@@ -1,11 +1,10 @@
 
-<h1>{{title}}</h1>
 
-{{#if click}}
+{{#if access}}
     <div id="container">
         {{#each list}}
             <div>
-                <a href="/update?fio={{fio}}">fio: {{fio}}  number:{{number}}</a>
+                <a href="/update?fio={{fio}}">fio: {{fio}} number:{{number}}</a>
                 </br>
             </div>
         {{/each}}

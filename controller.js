@@ -18,8 +18,8 @@ module.exports = {
     let data = fs.readFileSync("guide.json");
     let result = JSON.parse(data);
     for (var i = 0; i < result.length; i++) {
-      if (result[i]["fio"] == json["fio"]) {
-        result[i]["number"] = json["number"];
+      if (result[i].fio == json.fio) {
+        result[i].number = json.number;
       }
     }
     fs.writeFileSync("guide.json", JSON.stringify(result));

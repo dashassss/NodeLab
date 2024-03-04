@@ -24,15 +24,13 @@ app.use("/public", express.static("public"));
 app.get("/",(req,resp)=>{
   resp.render("get.hbs",{
     list: controller.get(),
-    title: "Telephone List",
-    click: true
+    access: true
   })
 })
 app.get("/post",(req,resp)=>{
   resp.render("post.hbs",{
     list: controller.get(),
-    title: "Telephone List",
-    click: false
+    access: false
   })
 })
 
@@ -40,26 +38,24 @@ app.get("/update",(req,resp)=>{
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   let result = controller.get();
-  let send;
+  let inf;
   for (var i = 0; i < result.length; i++) {
     if (result[i]["fio"] == query["fio"]) {
-      send = result[i];
+      inf = result[i];
       break;
     }
   }
   resp.render("update.hbs",{
     list: controller.get(),
-    title: "Telephone list",
-    fio: send["fio"],
-    number: send["number"],
-    click: false
+    fio: inf["fio"],
+    number: inf["number"],
+    access: false
   })
 })
 
 app.get("/delete",(req,resp)=>{
   resp.render("update.hbs",{
-    list: controller.get(),
-    title: "Telephone List",
+    list: controller.get()
   })
 })
 
@@ -70,7 +66,6 @@ app.post("/post",(req,resp)=>{
 })
 
 app.post("/update",(req,resp)=>{
-  console.log(req.body)
   controller.update(req.body)
   resp.redirect(303,"/")
 })
