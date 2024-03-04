@@ -9,6 +9,11 @@ module.exports = {
   post: (json) => {
     let data = fs.readFileSync("guide.json");
     let myObject = JSON.parse(data);
+    let existingObject = myObject.find(obj => obj.fio === json.fio);
+    if (existingObject) {
+      console.log('Объект уже существует');
+      return;
+    }
     let newData = { fio: json.fio, number: json.number };
     myObject.push(newData);
     let newData2 = JSON.stringify(myObject);
